@@ -56,8 +56,8 @@ Contributions are welcome! Here are some ways you can contribute:
 
 ## License
 
-This project is licensed under the [GPL-3.0 license](license). See the LICENSE file for details.
+This project is licensed under the [GPL-3.0 license](LICENSE). See the LICENSE file for details.
 
 ## Contact
 
-If you have any questions or need further assistance, feel free to contact the project maintainer at [apknusel@yahoo.com].
+If you have any questions or need further assistance, feel free to contact the project maintainer at (apknusel@yahoo.com)[mailto:apknusel@yahoo.com].
