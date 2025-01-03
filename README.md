@@ -60,4 +60,4 @@ This project is licensed under the [GPL-3.0 license](LICENSE). See the LICENSE f
 
 ## Contact
 
-If you have any questions or need further assistance, feel free to contact the project maintainer at [apknusel@yahoo.com]([Email Me](mailto:apknusel@yahoo.com?subject=YouTube%20Spot%20Saver)).
+If you have any questions or need further assistance, feel free to contact the project maintainer at [apknusel@yahoo.com](mailto:apknusel@yahoo.com?subject=YouTube%20Spot%20Saver)).
