@@ -1,4 +1,4 @@
-# YouTube Spot Saver
+# [YouTube Spot Saver](https://chromewebstore.google.com/detail/youtube-spot-saver/lodlknnffpkkekcpciclpnfghnhmmpmk)
 
 <img width="192" height="192" src="https://lh3.googleusercontent.com/zp90OrfRiblGvEt_f9MfydNRVrOY-v-NyrAPjAyenQVN6366dkkA4cC5is2OAabCJw4bgRT7wEbNm9LPEightTe8xQ=s128-rw">
 
