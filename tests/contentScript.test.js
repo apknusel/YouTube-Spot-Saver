@@ -7,7 +7,7 @@ describe('YouTube Spot Saver Function Tests', () => {
     let page;
 
     beforeAll(async () => {
-        browser = await puppeteer.launch({ headless: true });
+        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
         page = await browser.newPage();
 
         // Inject mock chrome object
@@ -90,7 +90,7 @@ describe('YouTube Spot Saver Integration Tests', () => {
     let page;
 
     beforeAll(async () => {
-        browser = await puppeteer.launch({ headless: true });
+        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
         page = await browser.newPage();
 
         // Inject mock chrome object
