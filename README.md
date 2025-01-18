@@ -47,7 +47,7 @@ YouTube Spot Saver is a Chrome Extension that saves your spot in a YouTube video
     npm install
     ```
 
-### Running Tests
+## Running Tests
 ```bash
 npx jest
 ```
