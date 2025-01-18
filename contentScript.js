@@ -1,32 +1,11 @@
 const MAX_STORAGE_AGE = 1000 * 60 * 60 * 24; // 24 hours in milliseconds
 
-// Convert the YouTube video time into milliseconds
-function timeToSeconds(time) {
-    const parts = time.split(":").map(Number);
-    let seconds = 0;
-
-    if (parts.length === 3) {
-        seconds += parts[0] * 3600;
-        seconds += parts[1] * 60;
-        seconds += parts[2];
-    } else if (parts.length === 2) {
-        seconds += parts[0] * 60;
-        seconds += parts[1];
-    } else if (parts.length === 1) {
-        seconds += parts[0];
-    } else {
-        throw new Error("Invalid time format");
-    }
-
-    return seconds;
-}
-
 // Function to store video timestamp in localStorage with prefix and timestamp
 function storeVideoTimestamp(videoId, timestamp) {
     const videoKey = `yt-ss-${videoId}`;
     const data = {
-        timestamp: timeToSeconds(timestamp),
-        savedAt: Date.now()  // Save the current timestamp
+        timestamp: timestamp,
+        savedAt: Date.now()  // Time when timestamp was saved
     };
     localStorage.setItem(videoKey, JSON.stringify(data));
     console.log(`Saved Video ID: ${videoId}, Timestamp: ${data.timestamp}`);
@@ -87,14 +66,12 @@ function cleanUpExpiredStorage() {
 window.addEventListener("beforeunload", (event) => {
     console.log("Page is about to be closed or refreshed!");
 
-    const currentTimeElement = document.querySelector('.ytp-time-current');
-    const timestamp = currentTimeElement?.textContent || null;
+    const timestamp = document.getElementsByTagName('video')[0].currentTime ?? null;
     if (timestamp) {
         const queryParams = new URLSearchParams(window.location.search);
         const videoId = queryParams.get('v');
 
         if (videoId) {
-            // Store the video ID and timestamp in localStorage
             storeVideoTimestamp(videoId, timestamp);
         }
     } else {
@@ -110,20 +87,17 @@ window.addEventListener("load", () => {
     const videoId = queryParams.get('v');
     const urlTimestamp = queryParams.get('t');
 
-    if (videoId) {
+    if (videoId && !urlTimestamp) {
         const savedTimestamp = getVideoTimestamp(videoId);
 
         if (savedTimestamp) {
             console.log(`Found saved timestamp for video ID: ${videoId}, Timestamp: ${savedTimestamp}`);
 
             // If the URL timestamp is different from the saved timestamp, redirect to the saved timestamp
-            if (urlTimestamp && parseInt(urlTimestamp) !== savedTimestamp) {
+            if (!urlTimestamp || parseInt(urlTimestamp) !== savedTimestamp) {
                 console.log(`Redirecting to saved timestamp ${savedTimestamp}`);
-                
-                // Use URL object to construct the new URL with the 't' parameter set to the saved timestamp
-                const url = new URL(window.location.href);
-                url.searchParams.set('t', savedTimestamp);
-                window.location.href = url.toString();
+
+                document.getElementsByTagName('video')[0].currentTime = savedTimestamp;
             }
         }
     } else {
