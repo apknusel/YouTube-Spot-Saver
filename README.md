@@ -31,6 +31,27 @@ YouTube Spot Saver is a Chrome Extension that saves your spot in a YouTube video
 3. Enable "Developer mode" if it is not already enabled.
 4. Click on "Load unpacked" and select the directory where you cloned the repository.
 
+### Node.js Setup
+1. Install Node.js from [nodejs.org](https://nodejs.org/).
+2. Verify the installation by running:
+    ```bash
+    node -v
+    npm -v
+    ```
+3. Navigate to the cloned repository directory:
+    ```bash
+    cd youtube-spot-saver
+    ```
+4. Install the project dependencies:
+    ```bash
+    npm install
+    ```
+
+### Running Tests
+```bash
+npx jest
+```
+
 ## Usage
 
 1. Open a YouTube video.
