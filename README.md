@@ -38,8 +38,8 @@ Contributions are welcome! Here are some ways you can contribute:
 ### Development Setup
 
 1. Clone the repository
-    ```sh
-    git clone https://github.com/your-username/youtube-spot-saver.git
+    ```bash
+    git clone https://github.com/apknusel/YouTube-Spot-Saver.git
     cd youtube-spot-saver
     ```
 
