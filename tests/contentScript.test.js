@@ -133,4 +133,25 @@ describe('YouTube Spot Saver Integration Tests', () => {
 
         expect(timestamp).toBe(10);
     });
+
+    test('should clean up expired storage after reload', async () => {
+        await page.goto('https://www.youtube.com/watch?v=i7vEpeljeZA');
+
+        // Manually add an expired item to localStorage
+        await page.evaluate(() => {
+            const videoId = 'expiredVideoId';
+            const data = {
+                timestamp: 3,
+                savedAt: Date.now() - (1000 * 60 * 60 * 25) // 25 hours ago
+            };
+            localStorage.setItem(`yt-ss-${videoId}`, JSON.stringify(data));
+        });
+
+        // Reload the page
+        await page.reload();
+
+        // Check if the expired item has been removed
+        const storedData = await page.evaluate(() => localStorage.getItem('yt-ss-expiredVideoId'));
+        expect(storedData).toBeNull();
+    });
 });

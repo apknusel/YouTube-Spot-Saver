@@ -83,6 +83,9 @@ window.addEventListener("beforeunload", (event) => {
 window.addEventListener("load", () => {
     console.log("Loading");
 
+    // Run cleanup of expired storage
+    cleanUpExpiredStorage();
+
     const queryParams = new URLSearchParams(window.location.search);
     const videoId = queryParams.get('v');
     const urlTimestamp = queryParams.get('t');
