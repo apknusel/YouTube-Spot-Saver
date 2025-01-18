@@ -1,4 +1,4 @@
-name: CI
+name: Jester Tests
 on: push
 jobs:
   build:
