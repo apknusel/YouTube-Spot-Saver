@@ -91,7 +91,7 @@ async function waitForVideoDuration(targetDuration) {
 // On page load, check if there's a saved timestamp for the video ID
 window.addEventListener("load", async () => {
     console.log("Loading");
-    
+
     setTimeout(1000);
 
     // Run cleanup of expired storage
@@ -105,7 +105,7 @@ window.addEventListener("load", async () => {
         const videoData = getVideoData(videoId);
 
         if (videoData.timestamp) {
-            
+
             await waitForVideoDuration(videoData.duration);
 
             // If the URL timestamp is different from the saved timestamp, redirect to the saved timestamp
