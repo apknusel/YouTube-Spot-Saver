@@ -8,6 +8,7 @@ YouTube Spot Saver is a Chrome Extension that saves your spot in a YouTube video
 
 ### v1.2
 - Fixed timestamps being applied to ads instead of the video
+- When the extension updates, it will clear all timestamps to prevent data compatibility issues.
 
 ### v1.1
 - Cleans up storage every time `www.youtube.com/*` is loaded.
