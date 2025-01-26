@@ -6,6 +6,9 @@ YouTube Spot Saver is a Chrome Extension that saves your spot in a YouTube video
 
 ## Features
 
+### v1.2
+- Fixed timestamps being applied to ads instead of the video
+
 ### v1.1
 - Cleans up storage every time `www.youtube.com/*` is loaded.
 - Switched to editing video player's current time instead of redirecting.
@@ -18,12 +21,13 @@ YouTube Spot Saver is a Chrome Extension that saves your spot in a YouTube video
 ## Future Features
 
 - [ ] Allow users to set the amount of time the spot in the video is saved for
-- [ ] Figure out if a work around is needed for preventing ads current time being changed instead of the YouTube videos.
+- [ ] Add ad blocking capabilities?
+- [x] Detect ads to prevent the timestamp being applied too early
 
 ## Installation
 
 ### Chrome Store
-1. Download from the Chrome Store [here](https://chromewebstore.google.com/detail/youtube-spot-saver/lodlknnffpkkekcpciclpnfghnhmmpmk)
+1. Download from the Chrome Web Store [here](https://chromewebstore.google.com/detail/youtube-spot-saver/lodlknnffpkkekcpciclpnfghnhmmpmk)
 
 ### Manual
 1. Clone the repository to your local machine.

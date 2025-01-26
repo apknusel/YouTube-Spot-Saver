@@ -1,18 +1,19 @@
 const MAX_STORAGE_AGE = 1000 * 60 * 60 * 24; // 24 hours in milliseconds
 
 // Function to store video timestamp in localStorage with prefix and timestamp
-function storeVideoTimestamp(videoId, timestamp) {
+function storeVideoData(videoId, timestamp, duration) {
     const videoKey = `yt-ss-${videoId}`;
     const data = {
         timestamp: timestamp,
+        duration: duration,
         savedAt: Date.now()  // Time when timestamp was saved
     };
     localStorage.setItem(videoKey, JSON.stringify(data));
-    console.log(`Saved Video ID: ${videoId}, Timestamp: ${data.timestamp}`);
+    console.log(`Saved Video ID: ${videoId}, Timestamp: ${data.timestamp}, Duration: ${data.duration}`);
 }
 
 // Function to get video timestamp from localStorage, checking for expiration
-function getVideoTimestamp(videoId) {
+function getVideoData(videoId) {
     const videoKey = `yt-ss-${videoId}`;
     const storedData = localStorage.getItem(videoKey);
 
@@ -26,8 +27,8 @@ function getVideoTimestamp(videoId) {
             return null;  // Data expired, return null
         }
 
-        console.log(`Found saved timestamp for Video ID: ${videoId}, Timestamp: ${data.timestamp}`);
-        return data.timestamp;  // Return valid timestamp
+        console.log(`Found saved timestamp for Video ID: ${videoId}, Timestamp: ${data.timestamp}, Duration: ${data.duration}`);
+        return data;  // Return valid timestamp
     }
 
     console.log(`No saved timestamp for Video ID: ${videoId}`);
@@ -67,21 +68,31 @@ window.addEventListener("beforeunload", (event) => {
     console.log("Page is about to be closed or refreshed!");
 
     const timestamp = document.getElementsByTagName('video')[0].currentTime ?? null;
+    const duration = document.getElementsByTagName('video')[0].duration ?? null;
     if (timestamp) {
         const queryParams = new URLSearchParams(window.location.search);
         const videoId = queryParams.get('v');
 
         if (videoId) {
-            storeVideoTimestamp(videoId, timestamp);
+            storeVideoData(videoId, timestamp, duration);
         }
     } else {
         console.log("Could not get the current time");
     }
 });
 
+async function waitForVideoDuration(targetDuration) {
+    const videoElement = document.getElementsByTagName('video')[0];
+    while (videoElement.duration !== targetDuration) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+}
+
 // On page load, check if there's a saved timestamp for the video ID
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
     console.log("Loading");
+    
+    setTimeout(1000);
 
     // Run cleanup of expired storage
     cleanUpExpiredStorage();
@@ -91,25 +102,20 @@ window.addEventListener("load", () => {
     const urlTimestamp = queryParams.get('t');
 
     if (videoId && !urlTimestamp) {
-        const savedTimestamp = getVideoTimestamp(videoId);
+        const videoData = getVideoData(videoId);
 
-        if (savedTimestamp) {
-            console.log(`Found saved timestamp for video ID: ${videoId}, Timestamp: ${savedTimestamp}`);
+        if (videoData.timestamp) {
+            
+            await waitForVideoDuration(videoData.duration);
 
             // If the URL timestamp is different from the saved timestamp, redirect to the saved timestamp
-            if (!urlTimestamp || parseInt(urlTimestamp) !== savedTimestamp) {
-                console.log(`Redirecting to saved timestamp ${savedTimestamp}`);
+            if (!urlTimestamp || parseInt(urlTimestamp) !== videoData.timestamp) {
+                console.log(`Redirecting to saved timestamp ${videoData.timestamp}`);
 
-                document.getElementsByTagName('video')[0].currentTime = savedTimestamp;
+                document.getElementsByTagName('video')[0].currentTime = videoData.timestamp;
             }
         }
     } else {
         console.log("No video ID found");
-    }
-});
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === 'cleanUpExpiredStorage') {
-        cleanUpExpiredStorage();
     }
 });
