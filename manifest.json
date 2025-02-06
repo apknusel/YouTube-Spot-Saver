@@ -15,7 +15,7 @@
         "scripting"
     ],
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "js/background.js"
     },
     "host_permissions": [
         "https://www.youtube.com/*"
@@ -23,7 +23,7 @@
     "content_scripts": [
         {
             "js": [
-                "contentScript.js"
+                "js/contentScript.js"
             ],
             "matches": [
                 "https://www.youtube.com/watch*"

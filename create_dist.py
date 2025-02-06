@@ -1,10 +1,10 @@
 import zipfile
 import os
 
-# List of files to include in the zip
+# List of files and directories to include in the zip
 files_to_zip = [
-    'background.js',
-    'contentScript.js',
+    'js',
+    'html',
     'manifest.json',
     'assets'
 ]
