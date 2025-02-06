@@ -23,7 +23,7 @@ describe('YouTube Spot Saver Function Tests', () => {
 
         await page.goto('https://www.youtube.com');
 
-        const contentScript = fs.readFileSync(path.resolve(__dirname, '../contentScript.js'), 'utf8');
+        const contentScript = fs.readFileSync(path.resolve(__dirname, '../js/contentScript.js'), 'utf8');
         await page.evaluate(contentScript);
     });
 
