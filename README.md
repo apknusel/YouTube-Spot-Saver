@@ -88,17 +88,17 @@ Contributions are welcome! Here are some ways you can contribute:
 
 ### Code Structure
 
-- [js](js)
+- [js](js); Contains all javascript for the extension
     - [background.js](js/background.js): Handles the clearing of storage when the extension is updated and shows the changelog.
     - [contentScript.js](js/contentScript.js): The main script that does the logic when YouTube is open for getting timestamps.
     - [popup.js](js/popup.js): All the logic involved with the popup when clicking the Chrome extension icon.
-- [html](html)
+- [html](html): Contains all html for the extension.
     - [popup.html](html/popup.html): HTML content for the popup.
-- [css](css)
+- [css](css): Contains all css for the extension.
     - [popup.css](html/popup.css): CSS content for the popup.
 - [manifest.json](manifest.json): The manifest file that defines the extension's metadata and permissions.
 - [assets](assets): Contains the extension's icons.
-- [tests](tests): Contains the tests for the code.
+- [tests](tests): Contains the tests for the extension.
     - [contentScript.test.js](tests/contentScript.test.js): Tests for contentScript.js
     - [popup.test.js](tests/popup.test.js): Tests for popup.test.js
 
