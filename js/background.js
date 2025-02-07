@@ -28,6 +28,9 @@ chrome.runtime.onInstalled.addListener((details) => {
                     });
                 });
             }
+            chrome.tabs.create({
+                url: 'https://github.com/apknusel/YouTube-Spot-Saver#changelog'
+            });
         });
     }
 });
