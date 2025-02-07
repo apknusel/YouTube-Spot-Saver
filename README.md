@@ -99,7 +99,7 @@ Contributions are welcome! Here are some ways you can contribute:
 - [manifest.json](manifest.json): The manifest file that defines the extension's metadata and permissions.
 - [assets](assets): Contains the extension's icons.
 - [tests](tests): Contains the tests for the code.
-    - [contentScript.test.js](tests/contentScrip.test.js): Tests for contentScript.js
+    - [contentScript.test.js](tests/contentScript.test.js): Tests for contentScript.js
     - [popup.test.js](tests/popup.test.js): Tests for popup.test.js
 
 ## License
