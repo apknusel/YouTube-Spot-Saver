@@ -6,6 +6,9 @@ YouTube Spot Saver is a Chrome Extension that saves your spot in a YouTube video
 
 ## Changelog
 
+### v1.3
+- Added a popup to customize the duration of time the timestamps are saved
+
 ### v1.2
 - Fixed timestamps being applied to ads instead of the video
 - When the extension updates, it will clear all timestamps to prevent data compatibility issues.
@@ -21,8 +24,8 @@ YouTube Spot Saver is a Chrome Extension that saves your spot in a YouTube video
 
 ## Future Features
 
-- [ ] Allow users to set the amount of time the spot in the video is saved for
 - [ ] Add ad blocking capabilities?
+- [x] Allow users to set the amount of time the spot in the video is saved for
 - [x] Detect ads to prevent the timestamp being applied too early
 
 ## Installation
@@ -85,10 +88,19 @@ Contributions are welcome! Here are some ways you can contribute:
 
 ### Code Structure
 
-- [contentScript.js](contentScript.js): Contains the main logic for saving and retrieving video timestamps. Contains logic for clearing up storage after 24 hours.
+- [js](js)
+    - [background.js](js/background.js): Handles the clearing of storage when the extension is updated and shows the changelog.
+    - [contentScript.js](js/contentScript.js): The main script that does the logic when YouTube is open for getting timestamps.
+    - [popup.js](js/popup.js): All the logic involved with the popup when clicking the Chrome extension icon.
+- [html](html)
+    - [popup.html](html/popus.html): HTML content for the popup.
+- [css](css)
+    - [popup.css](html/popup.css): CSS content for the popup.
 - [manifest.json](manifest.json): The manifest file that defines the extension's metadata and permissions.
 - [assets](assets): Contains the extension's icons.
 - [tests](tests): Contains the tests for the code.
+    - [contentScript.test.js](tests/contentScript.test.js): Tests for contentScript.js
+    - [popup.test.js](tests/popup.test.js): Tests for popup.test.js
 
 ## License
 
