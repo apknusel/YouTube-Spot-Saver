@@ -93,7 +93,7 @@ Contributions are welcome! Here are some ways you can contribute:
     - [contentScript.js](js/contentScript.js): The main script that does the logic when YouTube is open for getting timestamps.
     - [popup.js](js/popup.js): All the logic involved with the popup when clicking the Chrome extension icon.
 - [html](html)
-    - [popup.html](html/popus.html): HTML content for the popup.
+    - [popup.html](html/popup.html): HTML content for the popup.
 - [css](css)
     - [popup.css](html/popup.css): CSS content for the popup.
 - [manifest.json](manifest.json): The manifest file that defines the extension's metadata and permissions.
