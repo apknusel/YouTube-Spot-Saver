@@ -17,6 +17,9 @@ describe('YouTube Spot Saver Function Tests', () => {
                     onMessage: {
                         addListener: function () { }
                     }
+                },
+                storage: {
+                    sync: { get: () => {}, set: () => {} }
                 }
             };
         });
