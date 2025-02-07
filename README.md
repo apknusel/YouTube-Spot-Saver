@@ -88,7 +88,7 @@ Contributions are welcome! Here are some ways you can contribute:
 
 ### Code Structure
 
-- [js](js); Contains all javascript for the extension
+- [js](js): Contains all javascript for the extension
     - [background.js](js/background.js): Handles the clearing of storage when the extension is updated and shows the changelog.
     - [contentScript.js](js/contentScript.js): The main script that does the logic when YouTube is open for getting timestamps.
     - [popup.js](js/popup.js): All the logic involved with the popup when clicking the Chrome extension icon.
