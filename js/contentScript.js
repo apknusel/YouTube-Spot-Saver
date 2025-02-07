@@ -1,4 +1,13 @@
-const MAX_STORAGE_AGE = 1000 * 60 * 60 * 24; // 24 hours in milliseconds
+const DEFAULT_MAX_STORAGE_AGE = 1000 * 60 * 60 * 24; // 24 hours in milliseconds
+
+let MAX_STORAGE_AGE = DEFAULT_MAX_STORAGE_AGE;
+
+// Load the configured duration from storage
+chrome.storage.sync.get(['timestampDuration'], (result) => {
+    if (result.timestampDuration) {
+        MAX_STORAGE_AGE = 1000 * 60 * 60 * result.timestampDuration;
+    }
+});
 
 // Function to store video timestamp in localStorage with prefix and timestamp
 function storeVideoData(videoId, timestamp, duration) {
@@ -20,7 +29,7 @@ function getVideoData(videoId) {
     if (storedData) {
         const data = JSON.parse(storedData);
 
-        // Check if the stored data is expired (older than 24 hours)
+        // Check if the stored data is expired
         if (Date.now() - data.savedAt > MAX_STORAGE_AGE) {
             console.log(`Video ID ${videoId} timestamp has expired, removing...`);
             localStorage.removeItem(videoKey);
@@ -46,7 +55,7 @@ function cleanUpExpiredStorage() {
             if (storedData) {
                 const data = JSON.parse(storedData);
 
-                // Check if the stored data is expired (older than MAX_STORAGE_AGE)
+                // Check if the stored data is expired
                 if (Date.now() - data.savedAt > MAX_STORAGE_AGE) {
                     console.log(`Expired timestamp found for ${key}, removing...`);
                     localStorage.removeItem(key);  // Remove expired item from localStorage
