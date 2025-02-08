@@ -5,6 +5,8 @@
 YouTube Spot Saver is a Chrome Extension that saves your spot in a YouTube video when you exit the tab, so you can return to the same spot later. It stores the video timestamp in the browser's local storage and automatically redirects you to the saved timestamp when you revisit the video.
 
 ## Changelog
+### v1.4
+- Fixed distribution script
 
 ### v1.3
 - Added a popup to customize the duration of time the timestamps are saved
