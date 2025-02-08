@@ -5,6 +5,7 @@ import os
 files_to_zip = [
     'js',
     'html',
+    'css',
     'manifest.json',
     'assets'
 ]
