@@ -101,8 +101,6 @@ async function waitForVideoDuration(targetDuration) {
 window.addEventListener("load", async () => {
     console.log("Loading");
 
-    setTimeout(1000);
-
     // Run cleanup of expired storage
     cleanUpExpiredStorage();
 
