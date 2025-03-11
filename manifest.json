@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Youtube Spot Saver",
     "description": "Saves your spot in a YouTube video when exiting the tab so you can return later.",
-    "version": "1.4",
+    "version": "1.5",
     "icons": {
         "16": "assets/logo-16.png",
         "32": "assets/logo-32.png",
