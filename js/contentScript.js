@@ -97,9 +97,20 @@ async function waitForVideoDuration(targetDuration) {
     }
 }
 
+// Helper function to wait for document ready state
+async function waitForDocumentReady() {
+    while (document.readyState !== "complete") {
+        console.log("Waiting for document ready, current state:", document.readyState);
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+}
+
 // On page load, check if there's a saved timestamp for the video ID
 window.addEventListener("load", async () => {
-    console.log("Loading");
+    console.log("Load event triggered, checking readyState");
+    
+    await waitForDocumentReady();
+    console.log("Document is ready, proceeding with timestamp check");
 
     // Run cleanup of expired storage
     cleanUpExpiredStorage();
@@ -112,13 +123,11 @@ window.addEventListener("load", async () => {
         const videoData = getVideoData(videoId);
 
         if (videoData) {
-
             await waitForVideoDuration(videoData.duration);
 
             // If the URL timestamp is different from the saved timestamp, redirect to the saved timestamp
             if (!urlTimestamp || parseInt(urlTimestamp) !== videoData.timestamp) {
                 console.log(`Redirecting to saved timestamp ${videoData.timestamp}`);
-
                 document.getElementsByTagName('video')[0].currentTime = videoData.timestamp;
             }
         }
